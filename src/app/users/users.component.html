@@ -1,0 +1,100 @@
+<div class="container pt-5">
+	<div *ngIf="!hiddenform">
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-10">
+			<h3>Add user</h3>
+			<form >
+						<div class="form-group">
+					    <label for="username">User name:</label>
+					    <input type="text" [(ngModel)]="userdata.username" name="username" class="form-control" id="username" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="firstname">firstname:</label>
+					    <input type="text" [(ngModel)]="userdata.firstname" name="firstname" class="form-control" id="firstname" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="lastname">lastname:</label>
+					    <input type="text" [(ngModel)]="userdata.lastname" name="lastname" class="form-control" id="lastname" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="email">Email address:</label>
+					    <input type="email" [(ngModel)]="userdata.email" name="email" class="form-control" id="email" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="pwd">Password:</label>
+					    <input type="password" [(ngModel)]="userdata.password" name="password" class="form-control" id="pwd" required>
+					  </div>
+					  <div class="form-group">
+					  	<label for="group">choose your group:</label>
+					  	<select [(ngModel)]="userdata.group" name="group" id="group">
+					  		<option *ngFor="let group of groups" name="group" value="{{group.name}}" >{{group.name}}</option>
+					  	</select>
+					  </div>
+					  <div class="form-group">
+					    <label for="dateofbirth">dateofbirth:</label>
+					    <input type="date" [(ngModel)]="userdata.dateofbirth" name="dateofbirth" class="form-control" id="dateofbirth" required>
+					  </div>
+					   
+					  <button type="button" class="btn btn-primary " (click)="adduser()">Submit</button>
+					  <button type="button" class="btn btn-danger" (click)="cancel()" value="cancel">cancel</button>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
+		<div *ngIf="!hiddenbutton">
+		<button type="button" class="btn btn-primary" (click)="newuser()">AddUser</button>
+	</div>
+	</div>
+</div>
+<br>
+	
+	<div *ngIf="!hiddenform2"> 
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-9">
+			<table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>userName</th>
+			        <th>GroupName</th>
+			        <th>Email</th>
+			        <th>Edit</th>
+			        <th>Delete</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr *ngFor="let user of users">
+			        <td>
+			        	<a routerLink="/userdetail/{{user._id}}"> {{user.username}}</a>
+			       
+			    	</td>
+			        <td>{{user.group}}</td>
+			        <td>{{user.email}}</td>
+			        <td>
+			        	<a routerLink="/edituser/{{user._id}}">
+			        		<button type="button" class="btn btn-info">Edit</button>
+			        	</a>
+			        </td>
+			        <td>
+			        	<button type="button" class="btn btn-danger" (click)=delete(user._id)>Delete</button>
+			        
+			        </td>
+			        
+
+			      </tr>
+			      
+			      
+			    </tbody>
+  </table>
+		</div>
+
+
+	</div>
+</div>
+</div>
